@@ -1,0 +1,146 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"/>
+    <title>Speedometer</title>
+    <style type="text/css">
+    	
+#wrap{
+	width:400px;
+	margin:0 auto;
+	text-align:left;
+	margin-top:8px;
+	padding:5px;
+	background:#fff;
+    font-family:AvenirLTStd, Arial, Helvetica, sans-serif;
+	font-size:13px;    
+    line-height:16px;
+}
+#wrap .cont_details fieldset,.cont_order fieldset{
+	margin:10px;
+	padding:20px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -khtml-border-radius: 10px;
+    border-radius: 10px;
+}
+#wrap legend{
+	font-size:16px;
+	font-family:Georgia, "Times New Roman", Times, serif;
+	color:#000;
+	font-weight:bold;
+	font-style:italic;
+    padding-bottom:10px;
+}
+#wrap .cont_details input{
+	margin-bottom:10px;
+	color:#000;
+}
+#wrap .input1:hover,.input1:active{
+	
+}
+#wrap label{
+	display:block;
+	font-size:12px;
+	color:#000;
+    font-weight:bold;
+}
+#wrap label.inlinelabel
+{
+    display:inline;
+}
+#wrap .cont_order input{
+	margin-bottom:5px;
+}
+#wrap .cont_order p{
+	padding-top:5px;
+}
+
+#wrap input[type="radio"]
+{
+margin-top:8px;
+margin-bottom:8px;
+}
+
+#wrap input[type="text"]:hover,
+#wrap input[type="text"]:active {
+background-color: #FAF398;
+}
+
+#wrap input#submit
+{
+margin:10px;
+padding-left:20px;
+padding-right:20px;
+padding-top:10px;
+padding-bottom:10px;
+}
+
+#wrap div#totalPrice
+{
+    padding:10px;
+    font-weight:bold;
+    background-color:#ff0;
+}
+
+#wrap label.radiolabel
+{
+font-weight:normal;
+ display:inline;
+}
+    </style>
+    <script type="text/javascript">
+function calculateSpeed()
+{
+    var speed = 0;
+    var distance = 0;
+    var time = 0;
+    var sform = document.forms["speedometer"];
+    var distance = parseFloat(document.getElementById("di").value);
+    var time = parseFloat(document.getElementById("ti").value);
+    var speed = distance/time;     
+    var divobj = document.getElementById('totalSpeed');
+    divobj.style.display='block';
+    if(!isNaN(speed))
+    divobj.innerHTML = "<b>Your car's speed is: " + speed + "<b>Kms/hour";
+    }
+
+
+function hideTotal()
+{
+    var divobj = document.getElementById('totalSpeed');
+    divobj.style.display='none';
+}
+    </script>
+</head>
+<body onload='hideTotal()'>
+    <div id="wrap">
+        <form action="" method="GET" id="speedometer" onsubmit="return false;">
+        <div>
+            <div class="cont_order">
+               <fieldset>
+                <legend>Speed-o-Meter</legend>
+                <label>Guidelines:</label>
+               <ul>
+               	<li>Input the values in given metrics.</li>
+               	<li>You don't need to press submit button to display the Speed, pressing it will also show the result.</li>
+               	<li>After changing the field(s) to different value click anywhere on the screen, you'll see the changes.</li>
+               </ul>
+                <label>Enter the distance travelled(in Kms)</label><input type="numeric" id="di" name="dist" onchange="calculateSpeed()" /><br/>
+
+                <label>Enter the time taken(in Hours)</label><input type="numeric" id="ti" name="tim" onchange="calculateSpeed()" /><br/>
+                
+                
+                <div id="totalSpeed"></div>
+                
+                </fieldset>
+            </div>
+            
+        	
+            <input type='submit' id='submit' value='Submit' onclick="calculateSpeed()" />
+        </div>  
+       </form>
+	</div><!--End of wrap-->
+
+</body>
+</html>
